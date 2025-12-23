@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Si miras esto , te amo princesa</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://i.pinimg.com/564x/71/ea/18/71ea1838d8bacc0d08e544a6bce05da9.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        #texto-guia {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+            pointer-events: none;
+            z-index: 10;
+            text-align: center;
+            font-weight: bold;
+            width: 90%;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -150px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            z-index: 5;
+            touch-action: none;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-120vh) rotate(360deg); }
+        }
+
+        
+        .pop-content {
+            position: fixed;
+            pointer-events: none;
+            animation: popAnimation 1.2s ease-out forwards;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
+
+        .pop-content img {
+            width: 120px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 1 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .pop-content span {
+            color: white;
+            background: rgba(255, 105, 180, 0.8);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            white-space: nowrap;
+            margin-top: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        @keyframes popAnimation {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            100% { opacity: 0; transform: translate(-50%, -100%) scale(1.5); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="texto-guia">Revienta las burbujas...</div>
+
+    <script>
+        const sorpresas = [
+            { tipo: 'texto', contenido: '¡Te amo! ❤️' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/05/22/09/23/09-23-24-723_512.gif' },
+            { tipo: 'texto', contenido: 'Eres mi favorita ✨' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2024/01/19/00/53/00-53-56-818_512.gif' },
+            { tipo: 'texto', contenido: '¡Muaaaa! 💋' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/10/13/13/05/13-05-13-688_512.gif' },
+            { tipo: 'texto', contenido: 'Pewita hermosa 🌸' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/28/23/31/23-31-35-762_512.gif' },
+            { tipo: 'texto', contenido: 'Mi pensamiento favorito siempre ✨' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/16/01/18/01-18-12-381_512.gif' },
+            { tipo: 'texto', contenido: 'Contigo todo es mejor 🌷' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2024/03/19/21/16/21-16-25-562_512.gif' },
+            { tipo: 'texto', contenido: 'Mi pedacito de cielo ☁️' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/08/23/27/23-27-02-953_512.gif' },
+            { tipo: 'texto', contenido: 'Me encantas cada día más 💖' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2024/12/16/21/46/21-46-30-221_512.gif' },
+            { tipo: 'texto', contenido: 'Contigo el tiempo vuela ⏳' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2024/05/30/21/41/21-41-11-629_512.gif' },
+            { tipo: 'texto', contenido: 'Tú, mi mundo entero 🌎' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/06/03/04/28/04-28-59-494_512.gif' },
+            { tipo: 'texto', contenido: 'Te elijo cada día ❤️' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/05/19/07/19/07-19-59-129_512.gif' },
+            { tipo: 'texto', contenido: 'Quiero morder esos labios 👄' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/03/26/23/08/23-08-43-390_512.gif' },
+            { tipo: 'texto', contenido: 'No sabes cuánto te deseo 😏' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/11/12/14/25/14-25-45-151_512.gif' },
+            { tipo: 'texto', contenido: 'Eres mi mayor tesoro ❤️' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/11/17/23/17-23-59-470_512.gif' },
+            { tipo: 'texto', contenido: 'Ven y quítame las ganas 😏' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2022/11/03/14/55/14-55-28-467_512.gif' },
+            { tipo: 'texto', contenido: 'Me tienes loco, Pewe 😵‍💫' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2023/04/24/03/28/03-28-38-344_512.gif' },
+            { tipo: 'texto', contenido: 'Eres pura magia, nena ✨' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/06/16/35/16-35-45-35_512.gif' },
+            { tipo: 'texto', contenido: 'Amo todo de ti ❤️' },
+            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/06/05/14/25/14-25-42-180_512.gif' }
+        ];
+
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            const size = Math.random() * 40 + 60;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = Math.random() * 85 + 'vw';
+            
+            const duration = Math.random() * 4 + 4;
+            bubble.style.animation = `floatUp ${duration}s linear forwards`;
+
+            
+            const pop = (e) => {
+                
+                const posX = e.clientX || (e.touches && e.touches[0].clientX);
+                const posY = e.clientY || (e.touches && e.touches[0].clientY);
+                
+                showSurprise(posX, posY);
+                bubble.remove();
+            };
+
+            bubble.addEventListener('mousedown', pop);
+            bubble.addEventListener('touchstart', (e) => {
+                e.preventDefault(); 
+                pop(e);
+            });
+
+            document.body.appendChild(bubble);
+
+            setTimeout(() => {
+                if(bubble.parentNode) bubble.remove();
+            }, duration * 1000);
+        }
+
+        function showSurprise(x, y) {
+            const container = document.createElement('div');
+            container.className = 'pop-content';
+            
+            container.style.left = x + 'px';
+            container.style.top = y + 'px';
+
+            const item = sorpresas[Math.floor(Math.random() * sorpresas.length)];
+
+            if (item.tipo === 'texto') {
+                const span = document.createElement('span');
+                span.innerText = item.contenido;
+                container.appendChild(span);
+            } else {
+                const img = document.createElement('img');
+                img.src = item.contenido;
+                container.appendChild(img);
+            }
+
+            document.body.appendChild(container);
+            setTimeout(() => container.remove(), 1200);
+        }
+
+        
+        setInterval(createBubble, 800);
+    </script>
+</body>
+</html>
