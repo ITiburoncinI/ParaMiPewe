@@ -2,197 +2,255 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Si miras esto , te amo princesa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi princesa ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300&display=swap" rel="stylesheet">
     <style>
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            font-family: 'Poppins', sans-serif;
             overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            background-image: url('https://i.pinimg.com/564x/71/ea/18/71ea1838d8bacc0d08e544a6bce05da9.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            flex-direction: column;
         }
 
-        #texto-guia {
+        .container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            background: #a93226;
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid #c0392b; 
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out, z-index 0.6s;
+            z-index: 5; 
+        }
+
+        .wax-seal {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: white;
-            font-size: 2rem;
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
-            pointer-events: none;
-            z-index: 10;
-            text-align: center;
-            font-weight: bold;
-            width: 90%;
-        }
-
-        .bubble {
-            position: absolute;
-            bottom: -150px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.4);
+            width: 50px;
+            height: 50px;
+            background: #f3bf12;
             border-radius: 50%;
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            z-index: 5;
-            touch-action: none;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-120vh) rotate(360deg); }
-        }
-
-        
-        .pop-content {
-            position: fixed;
-            pointer-events: none;
-            animation: popAnimation 1.2s ease-out forwards;
-            z-index: 100;
+            border: 3px solid #000000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3), inset 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 6;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            transform: translate(-50%, -50%);
+            align-items: center;
+            font-size: 24px;
+            color: #922b21;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        
+        .wax-seal::after {
+            content: '★';
         }
 
-        .pop-content img {
-            width: 120px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 1 5px 15px rgba(0,0,0,0.3);
+        .envelope-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 110px solid #c0392b;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 4;
         }
 
-        .pop-content span {
+        .envelope-wrapper::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid #922b21; 
+            border-right: 150px solid #e74c3c; 
+            border-top: 100px solid transparent;
+            border-bottom: 100px solid transparent;
+            border-radius: 10px;
+            z-index: 3;
+        }
+
+        .letter {
+            position: absolute;
+            bottom: 0;
+            left: 20px; 
+            width: 260px;
+            height: 180px;
+            background: #fff8e1;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            transition: all 0.8s ease-in-out;
+            z-index: 2; 
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .letter h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #c0392b;
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .letter p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .text-content {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .btn-open {
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: #2ecc71;
             color: white;
-            background: rgba(255, 105, 180, 0.8);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
             font-weight: bold;
-            white-space: nowrap;
-            margin-top: 5px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+            z-index: 20;
+            position: relative;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes popAnimation {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-            100% { opacity: 0; transform: translate(-50%, -100%) scale(1.5); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
+
+        .container.open .flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+        
+        .container.open .wax-seal {
+            opacity: 0;
+        }
+
+        .container.open .letter {
+            bottom: 60px;
+            height: 350px;
+            z-index: 10;
+        }
+
+        .container.open .btn-open {
+            display: none;
+        }
+
+        .falling-item {
+            position: absolute;
+            top: -30px;
+            color: white;
+            font-size: 1em;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+        
+        .credit { position: fixed; bottom: 10px; color: rgba(255,255,255,0.3); font-size: 10px; }
     </style>
 </head>
 <body>
 
-    <div id="texto-guia">Revienta las burbujas...</div>
+    <div class="container" id="envelope-container">
+        <div class="envelope-wrapper">
+            <div class="flap"></div>
+            <div class="wax-seal"></div> <div class="letter">
+                <div class="text-content">
+                    <h2>Para mi niña hermosa 💌</h2>
+                    <p id="mensaje-personalizado">
+                        ¡Feliz Navidad! 🎄✨<br><br>
+                        
+                        Espero que sea de tu agrado.
+                        <br><br>
+                        Ojalá la estes pasando muy bien con tu familia, se lo gran mujer que eres y sé que serás una buena enfermera próximamente ☝️<br>Te conozco aproximadamente desde agosto de 2024 sino me equivoco, recuerdo demasiadas cosas de ti. Me encanta hacerte cartas, regalos, páginas web, lo que sea con tal de tenerte contenta todos los días 🩵.<br>Desearía poder estar contigo y pasar juntos estas fechas pero nacimos en distintos lugares jajaja así que tendrá que ser el siguiente año creo yo.<br>Te amo muchote princesa 💞
+                        <br><br>
+                        ¿Te espero debajo de mi árbol, digo no? 😈<br>
+                        Serás mi regalo muack 💏
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button class="btn-open" onclick="abrirCarta()">Toca para abrir tu carta amor 🎁</button>
+    </div>
+    
+    <div class="credit">VEN PARA DARTE MUERDAGO GRRR ❤️</div>
 
     <script>
-        const sorpresas = [
-            { tipo: 'texto', contenido: '¡Te amo! ❤️' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/05/22/09/23/09-23-24-723_512.gif' },
-            { tipo: 'texto', contenido: 'Eres mi favorita ✨' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2024/01/19/00/53/00-53-56-818_512.gif' },
-            { tipo: 'texto', contenido: '¡Muaaaa! 💋' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/10/13/13/05/13-05-13-688_512.gif' },
-            { tipo: 'texto', contenido: 'Pewita hermosa 🌸' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/28/23/31/23-31-35-762_512.gif' },
-            { tipo: 'texto', contenido: 'Mi pensamiento favorito siempre ✨' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/16/01/18/01-18-12-381_512.gif' },
-            { tipo: 'texto', contenido: 'Contigo todo es mejor 🌷' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2024/03/19/21/16/21-16-25-562_512.gif' },
-            { tipo: 'texto', contenido: 'Mi pedacito de cielo ☁️' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/08/23/27/23-27-02-953_512.gif' },
-            { tipo: 'texto', contenido: 'Me encantas cada día más 💖' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2024/12/16/21/46/21-46-30-221_512.gif' },
-            { tipo: 'texto', contenido: 'Contigo el tiempo vuela ⏳' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2024/05/30/21/41/21-41-11-629_512.gif' },
-            { tipo: 'texto', contenido: 'Tú, mi mundo entero 🌎' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/06/03/04/28/04-28-59-494_512.gif' },
-            { tipo: 'texto', contenido: 'Te elijo cada día ❤️' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/05/19/07/19/07-19-59-129_512.gif' },
-            { tipo: 'texto', contenido: 'Quiero morder esos labios 👄' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/03/26/23/08/23-08-43-390_512.gif' },
-            { tipo: 'texto', contenido: 'No sabes cuánto te deseo 😏' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/11/12/14/25/14-25-45-151_512.gif' },
-            { tipo: 'texto', contenido: 'Eres mi mayor tesoro ❤️' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/11/17/23/17-23-59-470_512.gif' },
-            { tipo: 'texto', contenido: 'Ven y quítame las ganas 😏' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2022/11/03/14/55/14-55-28-467_512.gif' },
-            { tipo: 'texto', contenido: 'Me tienes loco, Pewe 😵‍💫' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2023/04/24/03/28/03-28-38-344_512.gif' },
-            { tipo: 'texto', contenido: 'Eres pura magia, nena ✨' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/01/06/16/35/16-35-45-35_512.gif' },
-            { tipo: 'texto', contenido: 'Amo todo de ti ❤️' },
-            { tipo: 'gif', contenido: 'https://cdn.pixabay.com/animation/2025/06/05/14/25/14-25-42-180_512.gif' }
-        ];
+        // Array con los diferentes símbolos que caerán
+        const fallingSymbols = ['❄️', '⛄', '🌿', '🎁'];
 
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
+        function createFallingItem() {
+            const item = document.createElement('div');
+            item.classList.add('falling-item');
+            // Selecciona un símbolo al azar del array
+            item.textContent = fallingSymbols[Math.floor(Math.random() * fallingSymbols.length)];
             
-            const size = Math.random() * 40 + 60;
-            bubble.style.width = `${size}px`;
-            bubble.style.height = `${size}px`;
-            bubble.style.left = Math.random() * 85 + 'vw';
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.animationDuration = Math.random() * 3 + 3 + 's'; // Entre 3 y 6 segundos
+            item.style.fontSize = Math.random() * 15 + 15 + 'px'; // Tamaño variable
             
-            const duration = Math.random() * 4 + 4;
-            bubble.style.animation = `floatUp ${duration}s linear forwards`;
-
-            
-            const pop = (e) => {
-                
-                const posX = e.clientX || (e.touches && e.touches[0].clientX);
-                const posY = e.clientY || (e.touches && e.touches[0].clientY);
-                
-                showSurprise(posX, posY);
-                bubble.remove();
-            };
-
-            bubble.addEventListener('mousedown', pop);
-            bubble.addEventListener('touchstart', (e) => {
-                e.preventDefault(); 
-                pop(e);
-            });
-
-            document.body.appendChild(bubble);
-
-            setTimeout(() => {
-                if(bubble.parentNode) bubble.remove();
-            }, duration * 1000);
+            document.body.appendChild(item);
+            setTimeout(() => { item.remove(); }, 6000);
         }
-
-        function showSurprise(x, y) {
-            const container = document.createElement('div');
-            container.className = 'pop-content';
-            
-            container.style.left = x + 'px';
-            container.style.top = y + 'px';
-
-            const item = sorpresas[Math.floor(Math.random() * sorpresas.length)];
-
-            if (item.tipo === 'texto') {
-                const span = document.createElement('span');
-                span.innerText = item.contenido;
-                container.appendChild(span);
-            } else {
-                const img = document.createElement('img');
-                img.src = item.contenido;
-                container.appendChild(img);
-            }
-
-            document.body.appendChild(container);
-            setTimeout(() => container.remove(), 1200);
-        }
-
         
-        setInterval(createBubble, 800);
+        // Generar elementos variados
+        setInterval(createFallingItem, 300);
+
+        function abrirCarta() {
+            const container = document.getElementById('envelope-container');
+            const music = document.getElementById('bg-music');
+            container.classList.add('open');
+            music.volume = 0.5;
+            music.play().catch(e => console.log("Interacción requerida para audio"));
+        }
     </script>
 </body>
 </html>
